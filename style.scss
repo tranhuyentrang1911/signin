@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300&display=swap');
+$primary-color:#324ea8;
+$error-color:#f33a58;
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    color: #333;
+    font-size: 62.5%;
+    font-family: Poppins, sans-serif;
+}
+
+.main {
+    background: #f1f1f1;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form {
+    width: 340px;
+    min-height: 100px;
+    padding: 24px 32px;
+    text-align: center;
+    background: #fff;
+    border-radius: 4px;
+    align-self: center;
+    box-shadow: 0 2px 5px 0 rgba(1, 1, 1, 0.3);
+}
+
+.form_hidden {
+    display: none;
+}
+
+.form .heading {
+    font-weight: 900;
+    font-size: 1.8rem;
+    color: $primary-color;
+}
+
+.form_group {
+    display: flex;
+    margin-bottom: 10px;
+    flex-direction: column;
+}
+
+.form_label .form_message {
+    text-align: left;
+}
+
+.form_label {
+    font-weight: 700;
+    padding-bottom: 6px;
+    line-height: 1.6rem;
+    font-size: 1.3rem;
+    text-align: left;
+}
+
+.form_control {
+    height: 40px;
+    padding: 8px 12px;
+    border: 1px solid #b3b3b3;
+    border-radius: 3px;
+    outline: none;
+    font-size: 1.2rem;
+    &:hover {
+        border-color: $primary-color;
+    }
+}
+
+.form_group.invalid {
+    .form_control {
+        border-color: $error-color;
+    }
+    .form_message {
+        color: $error-color;
+    }
+}
+
+.form_message {
+    font-weight: 600;
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+    padding: 4px 0 0;
+    text-align: left;
+}
+
+.form_submit {
+    outline: none;
+    background-color: $primary-color;
+    margin: 12px auto;
+    padding: 12px 16px;
+    font-weight: 600;
+    color: #fff;
+    border: none;
+    width: 100%;
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    &:hover {
+        transition: 0.3s;
+        background-color: #092ea9;
+    }
+}
+
+.spacer {
+    margin-top: 24px;
+}
+
+.form_link {
+    text-align: center;
+    font-size: 1.3rem;
+    a {
+        font-weight: 700;
+        text-decoration: none;
+        color: $primary-color;
+        transition: 0.3s;
+        &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+            color: #092ea9;
+        }
+    }
+}

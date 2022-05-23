@@ -1,0 +1,147 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html {
+  color: #333;
+  font-size: 62.5%;
+  font-family: Poppins, sans-serif;
+}
+
+.main {
+  background: #f1f1f1;
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.form {
+  width: 340px;
+  min-height: 100px;
+  padding: 24px 32px;
+  text-align: center;
+  background: #fff;
+  border-radius: 4px;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  -webkit-box-shadow: 0 2px 5px 0 rgba(1, 1, 1, 0.3);
+          box-shadow: 0 2px 5px 0 rgba(1, 1, 1, 0.3);
+}
+
+.form_hidden {
+  display: none;
+}
+
+.form .heading {
+  font-weight: 900;
+  font-size: 1.8rem;
+  color: #324ea8;
+}
+
+.form_group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 10px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.form_label .form_message {
+  text-align: left;
+}
+
+.form_label {
+  font-weight: 700;
+  padding-bottom: 6px;
+  line-height: 1.6rem;
+  font-size: 1.3rem;
+  text-align: left;
+}
+
+.form_control {
+  height: 40px;
+  padding: 8px 12px;
+  border: 1px solid #b3b3b3;
+  border-radius: 3px;
+  outline: none;
+  font-size: 1.2rem;
+}
+
+.form_control:hover {
+  border-color: #324ea8;
+}
+
+.form_group.invalid .form_control {
+  border-color: #f33a58;
+}
+
+.form_group.invalid .form_message {
+  color: #f33a58;
+}
+
+.form_message {
+  font-weight: 600;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+  padding: 4px 0 0;
+  text-align: left;
+}
+
+.form_submit {
+  outline: none;
+  background-color: #324ea8;
+  margin: 12px auto;
+  padding: 12px 16px;
+  font-weight: 600;
+  color: #fff;
+  border: none;
+  width: 100%;
+  font-size: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.form_submit:hover {
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  background-color: #092ea9;
+}
+
+.spacer {
+  margin-top: 24px;
+}
+
+.form_link {
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+.form_link a {
+  font-weight: 700;
+  text-decoration: none;
+  color: #324ea8;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.form_link a:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  color: #092ea9;
+}
+/*# sourceMappingURL=style.css.map */
