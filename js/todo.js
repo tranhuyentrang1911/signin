@@ -62,9 +62,9 @@ function saveTodoList() {
 
         item => {
             let text = item.querySelector('span').innerText;
-            console.log(text);
+            // console.log(text);
             let status = item.getAttribute('class');
-            console.log(status);
+            // console.log(status);
             return {
                 text,
                 status
@@ -72,7 +72,7 @@ function saveTodoList() {
         }
 
     );
-    console.log(todoListStorage)
+    // console.log(todoListStorage)
     localStorage.setItem('todolist', JSON.stringify(todoListStorage));
 
 }
@@ -86,4 +86,3 @@ function todoInit() {
     }
 }
 todoInit();
-console.log(window.location.port, window.location.hostname + window.location.origin)
