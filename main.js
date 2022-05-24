@@ -60,7 +60,7 @@ function checkEmptyElement(input) {
     return isEmptyError;
 }
 
-function checkValidPhone(input) {
+function checkInvalidPhone(input) {
     input.value = input.value.trim();
     const regexPhone = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
     let isPhoneInvalid = !regexPhone.test(input.value);
@@ -72,7 +72,7 @@ function checkValidPhone(input) {
     return isPhoneInvalid;
 }
 
-function checkValidEmail(input) {
+function checkInvalidEmail(input) {
     input.value = input.value.trim();
 
     const regexEmail =
@@ -86,7 +86,7 @@ function checkValidEmail(input) {
     return isEmailInvalid;
 }
 
-function checkValidPassword(input) {
+function checkInvalidPassword(input) {
     input.value = input.value.trim();
     const regexPassword = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
     let isPasswordInvalid = !regexPassword.test(input.value);
@@ -100,7 +100,7 @@ function checkValidPassword(input) {
 
 function checkMatchPassword(password, confirmPassword) {
     password.value = password.value.trim();
-    confirmPassword.value.confirmPassword.value.trim();
+    confirmPassword.value = confirmPassword.value.trim();
     let isConfirmPasswordInvalid = false;
     if (password.value) {
         if (password.value === confirmPassword.value) {
@@ -122,13 +122,13 @@ function Validate(listInput) {
             input.onblur = function() {
                 if (checkEmptyElement(input) == false) {
                     if (input == phone) {
-                        checkValidPhone(input);
+                        checkInvalidPhone(input);
                     }
                     if (input == email || input == email2) {
-                        checkValidEmail(input);
+                        checkInvalidEmail(input);
                     }
                     if (input == password || input == password2) {
-                        checkValidPassword(input);
+                        checkInvalidPassword(input);
                     }
                     if (input == confirmPassword) {
                         checkMatchPassword(password, input);
@@ -151,13 +151,13 @@ formSignUp.onsubmit = function(e) {
         if (input) {
             if (checkEmptyElement(input) == false) {
                 if (input == phone) {
-                    checkValidPhone(input);
+                    checkInvalidPhone(input);
                 }
                 if (input == email) {
-                    checkValidEmail(input);
+                    checkInvalidEmail(input);
                 }
                 if (input == password) {
-                    checkValidPassword(input);
+                    checkInvalidPassword(input);
                 }
                 if (input == confirmPassword) {
                     checkMatchPassword(password, input);
@@ -171,17 +171,51 @@ formSignUp.onsubmit = function(e) {
 
 formSignIn.onsubmit = function(e) {
     e.preventDefault();
-    listInput.forEach(input => {
-        if (input) {
-            if (checkEmptyElement(input) == false) {
+    var isEmailError = true;
+    var isPasswordError = true;
 
-                if (input == email2) {
-                    checkValidEmail(input);
-                }
-                if (input == password2) {
-                    checkValidPassword(input);
-                }
+    listInput2.forEach(input => {
+        if (input && checkEmptyElement(input) === false) {
+            if (input === email2) {
+                isEmailError = checkInvalidEmail(input);
+            } else if (input === password2) {
+                isPasswordError = checkInvalidPassword(input);
+
             }
         }
     });
+
+
+    if (!isEmailError && !isPasswordError) {
+        const url = 'https://app-json-demo.herokuapp.com/api/login';
+        fetchToken(url);
+        if (localStorage.getItem("storageKey")) {
+
+            window.location = `${window.location.origin}/todolist.html`;
+
+        }
+    }
+
+
+}
+
+
+
+function fetchToken(url) {
+    fetch(url)
+        .then(function(response) {
+            if (!response.ok) {
+                throw Error(response.statusText);
+            }
+            // Read the response as json.
+            return response.json();
+        })
+        .then(function(responseAsJson) {
+            // Do stuff with the JSON
+            localStorage.setItem("storageKey", JSON.stringify(responseAsJson));
+
+        })
+        .catch(function(error) {
+            console.log('Looks like there was a problem: \n', error);
+        });
 }

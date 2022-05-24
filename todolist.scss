@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300&display=swap');
+$primary-color:#324ea8;
+$error-color:#f33a58;
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    color: #333;
+    font-size: 62.5%;
+    font-family: Poppins, sans-serif;
+}
+
+.main {
+    background: #f1f1f1;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form {
+    width: 600px;
+    min-height: 400px;
+    max-height: 500px;
+    padding: 24px 32px;
+    text-align: center;
+    background: #fff;
+    border-radius: 4px;
+    align-self: center;
+    box-shadow: 0 2px 5px 0 rgba(1, 1, 1, 0.3);
+}
+
+.spacer {
+    margin-top: 24px;
+}
+
+h2 {
+    font-weight: 900;
+    font-size: 1.8rem;
+    color: $primary-color;
+}
+
+input {
+    width: 60%;
+    height: 40px;
+    padding: 8px 12px;
+    border: 1px solid $primary-color;
+    border-radius: 3px;
+    outline: none;
+    font-size: 1.2rem;
+}
+
+button {
+    outline: none;
+    background-color: $primary-color;
+    margin: 12px auto;
+    padding: 12px 16px;
+    font-weight: 600;
+    color: #fff;
+    border: none;
+    width: 20%;
+    font-size: 1.4rem;
+    border-radius: 4px;
+    cursor: pointer;
+    &:hover {
+        transition: 0.3s;
+        background-color: #092ea9;
+    }
+}
+
+.container {
+    width: 80%;
+    margin: 12px auto;
+    overflow: auto;
+    height: 250px;
+}
+
+.todos {
+    width: 100%;
+    margin: 12px auto;
+}
+
+li {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 1.4rem;
+    border-bottom: 1px solid #aaa;
+    margin-bottom: 10px;
+    cursor: pointer;
+    color: #000;
+    span {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #000;
+        font-weight: bold;
+    }
+    i {
+        padding: 10px;
+        font-weight: bold;
+        &.check {
+            &:hover {
+                color: green;
+            }
+        }
+        &.delete {
+            &:hover {
+                color: red;
+            }
+        }
+        &:hover {
+            background-color: #aaa;
+            border-radius: 2px;
+        }
+    }
+}
+
+li.finished {
+    span {
+        color: green;
+    }
+    i.check {
+        color: green;
+    }
+    border-bottom: 1px solid green;
+}
