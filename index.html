@@ -12,7 +12,7 @@
 <body>
     <div class="main">
         <!-- Form Sign Up -->
-        <form action="" class="form" id="form_signup">
+        <form action="" class="form form_hidden" id="form_signup">
             <h3 class="heading">
                 Sign Up
             </h3>
@@ -58,7 +58,7 @@
         </form>
 
         <!-- Form Sign In -->
-        <form action="" class="form form_hidden" id="form_signin">
+        <form action="" class="form" id="form_signin">
             <h3 class="heading">
                 Sign In
             </h3>
@@ -84,7 +84,83 @@
                 Don't have an account?<a href="#" id="linkSignUp">Sign up</a>
             </div>
         </form>
-        <script src="./js/main.js"></script>
+        <!-- <script src="./js/main.js"></script> -->
+        <script src="./js/Validator.js"></script>
+        <script>
+            var formSignUp = document.querySelector('#form_signup');
+            var formSignIn = document.querySelector('#form_signin');
+            document.querySelector("#linkSignIn").onclick = e => {
+                e.preventDefault();
+                formSignUp.classList.add("form_hidden");
+                formSignIn.classList.remove("form_hidden");
+            };
+
+            document.querySelector("#linkSignUp").onclick = e => {
+                e.preventDefault();
+                formSignIn.classList.add("form_hidden");
+                formSignUp.classList.remove("form_hidden");
+            };
+
+            function fetchToken(url) {
+                fetch(url)
+                    .then(function(response) {
+                        if (!response.ok) {
+                            throw Error(response.statusText);
+                        }
+                        // Read the response as json.
+                        return response.json();
+                    })
+                    .then(function(responseAsJson) {
+                        // Do stuff with the JSON
+                        localStorage.setItem("storageKey", JSON.stringify(responseAsJson));
+
+                    })
+                    .catch(function(error) {
+                        console.log('Looks like there was a problem: \n', error);
+                    });
+            }
+            Validator({
+                form: "#form_signup",
+                parentSelector: '.form_group',
+                errorSelector: '.form_message',
+                rules: [
+                    Validator.isRequired('#username'),
+                    Validator.isRequired('#phone'),
+                    Validator.isRequired('#email'),
+                    Validator.isRequired('#password'),
+                    Validator.isRequired('#confirm_password'),
+                    Validator.isPhone('#phone'),
+                    Validator.isEmail('#email'),
+                    Validator.isPassword('#password'),
+                    Validator.isMatchPassword('#confirm_password', function() {
+                        return document.querySelector('#form_signup #password').value;
+                    }, "Password does not match")
+
+
+                ]
+            });
+            const url = 'https://app-json-demo.herokuapp.com/api/login';
+            Validator({
+                form: "#form_signin",
+                parentSelector: '.form_group',
+                errorSelector: '.form_message',
+                rules: [
+                    Validator.isRequired('#email2'),
+                    Validator.isRequired('#password2'),
+                    Validator.isEmail('#email2'),
+                    Validator.isPassword('#password2')
+                ],
+                login: function(url) {
+                    fetchToken(url);
+                    if (localStorage.getItem("storageKey")) {
+
+                        window.location = `${window.location.origin}/todolist.html`;
+
+                    }
+
+                }
+            });
+        </script>
 
     </div>
 </body>
